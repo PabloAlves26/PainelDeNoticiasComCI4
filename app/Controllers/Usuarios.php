@@ -6,6 +6,9 @@ use App\Models\UsuariosModel;
 class Usuarios extends Controller {
 
     public function index() {
+
+        $data['session'] = \Config\Services::session();
+
        $data['title'] = 'Login';
        echo view('templates/header', $data);
        echo view('/login_page');
@@ -17,8 +20,7 @@ class Usuarios extends Controller {
         $senha = $this->request->getVar('senha');
 
         $data['usuarios'] = $model->getUsuarios($user, $senha);
-
-        var_dump('Usuarios login');
+        $data['session'] = \Config\Services::session();
 
         if (empty($data['usuarios'])) {
 
@@ -26,8 +28,23 @@ class Usuarios extends Controller {
 
         } else {
 
+            $sessionData = [
+                'user' => $user,
+                'logged_in' => TRUE
+            ];
+            $data['session']->set($sessionData);           
             return redirect('noticias');
 
         }
+    }
+
+    public function logout() {
+
+        $data['session'] = \Config\Services::session();
+
+        $data['session']->destroy();
+
+        return redirect('noticias');
+
     }
 }

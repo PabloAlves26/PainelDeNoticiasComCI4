@@ -23,6 +23,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
+# 
 # $routes->setAutoRoute(true);
 
 $routes->match(['get','post'], 'noticias/inserir' ,'Noticias::inserir');
@@ -31,7 +32,8 @@ $routes->match(['get','post'], 'noticias/editar/(:num)' ,'Noticias::editar/$1');
 $routes->match(['get','post'], 'noticias/excluir/(:num)' ,'Noticias::excluir/$1');
 //$routes->get('login', 'Usuarios::index'); // Corrigir: Deve ser habilitada se em produção
 $routes->get('login', 'Usuarios::index'); // Corrigir Linha de teste. Deve ser desabilitada se em produção
-$routes->post('usuarios/login', 'Usuarios::login'); // Corrigir Linha de teste. Deve ser desabilitada se em produção
+$routes->get('usuarios/logout', 'Usuarios::logout');
+$routes->post('/usuarios/login', 'Usuarios::login'); // Corrigir Linha de teste. Deve ser desabilitada se em produção
 $routes->get('noticias', 'Noticias::index');
 $routes->get('noticias/(:segment)','Noticias::item/$1');
 $routes->get('/', 'Pages::mostrar');
