@@ -8,7 +8,9 @@
      // Atributos de Configuração
      protected $table = 'noticias';
      protected $primaryKey = 'id';
-     protected $allowedFields = ['titulo','autor','descricao'];
+     protected $allowedFields = ['titulo','autor','descricao','img'];
+
+
     // Ativando o r3ecurso do soft delete
      protected $useSoftDeletes = true;
      protected $useTimestamps = true;
